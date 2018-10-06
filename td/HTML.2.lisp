@@ -36,4 +36,15 @@
 
 (setq text (make-html document1))
 
+(setq a "tet")
+(write-line a)
+
 (print text)
+
+(setq file (open "index.html" :if-does-not-exist :create :direction :output :if-exists :overwrite))
+(format file "~A" text)
+(close file)
+
+(with-open-file (f "index.1.html" :if-does-not-exist :create :direction :output :if-exists :overwrite)
+    (format f "~A" text)
+)
