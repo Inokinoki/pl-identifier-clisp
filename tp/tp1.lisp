@@ -16,7 +16,6 @@
             ((not(cddr L))(list (cadr L) (car L)))          ;; 2 elements
         )
     )
-
 )
 
 (defun reverseC (L)
@@ -50,18 +49,31 @@
 
 
 (defun myEqual (a b)
-  (cond ((numberp a) (numberp b))
-        ((symbolp a) (eq a b))
+  (cond ((and (numberp a) (numberp b)) 
+            (eq a b)
+        )
+        ((symbolp a) 
+            (eq a b)
+        )
         ((and (listp a) (listp b))
-         (and (myEqual (car a) (car b)) (myEqual (cdr a) (cdr b))))
-        (t nil))
+            (and 
+                (myEqual (car a) (car b)) 
+                (myEqual (cdr a) (cdr b))
+            )
+        )
+        (T nil))
 )
 
 ;;Test myEqual
-;;(print (myEqual 'LUC 'LUC))
-;(print (myEqual 'LUC 'DANIEL))
-;(print (myEqual (car'(do re)) (cadr'(mi do sol))))
-;(print (myEqual '(d p f t r) '(d p f t r)))    ;; NIL
+(print (myEqual 'LUC 'LUC))
+(print (myEqual 'LUC 'DANIEL))
+(print (myEqual (car '(do re)) (cadr '(mi do sol))))
+(print (myEqual '(d p f t r) '(d p f t r)))    ;; NIL
+
+(print (eq 'LUC 'LUC))
+(print (eq 'LUC 'DANIEL))
+(print (eq (car '(do re)) (cadr '(mi do sol))))
+(print (eq '(d p f t r) '(d p f t r)))    ;; NIL
 
 
 ;;Test la fonction standard EQ
