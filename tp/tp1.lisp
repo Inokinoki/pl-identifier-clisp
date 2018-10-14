@@ -49,7 +49,7 @@
 
 
 (defun myEqual (a b)
-  (cond ((and (numberp a) (numberp b)) 
+  (cond ((numberp a)
             (eq a b)
         )
         ((symbolp a) 
@@ -107,21 +107,21 @@
 )
 
 (defun list-paire2 (L1 L2)
-     (mapcar (lambda (a b)  (cons a b)  ) L1 L2 )
+     (mapcar (lambda (a b)  (cons a (list b))  ) L1 L2 )
 )
 
 (defun list-paire3 (L1 L2)
      (mapcar (lambda (a b)  (list a b)  ) L1 L2 )
 )
 
-;; (setq a '(0 2 3 11))
-;; (setq b '(6 10 20 30))
+(setq a '(0 2 3 11))
+(setq b '(6 10 20 30))
 ;; (print"--------list-paire----------")
-;; (print(list-paire a b))
+ (print (list-paire a b))
 ;; (print"--------list-paire2----------")
-;; (print(list-paire2 a b))
+(print (list-paire2 a b))
 ;; (print"--------list-paire3----------")
-;; (print(list-paire3 a b))
+(print (list-paire3 a b))
 ;; (print"--------cons----------")
 ;; (print (cons a b))
 ;; (print"--------append----------")
@@ -129,20 +129,31 @@
 
 ;;Exercice3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun my-assoc(cle a-list)
+    (setq temp NIL)
+    (loop for n in a-list
+        do(if (and (eq cle (car n)) (not temp))
+            (setq temp n)
+            NIL
+        )
+    )
+    temp
+)
 
 (defun my-assocBis(cle a-list)
     (setq temp '())
     (loop for n in a-list
-    do(if(eq cle (car n))
-        (setq temp (append temp (list n)))
-       )
-
+        do(if (eq cle (car n))
+            (setq temp (append temp (list n)))
+            NIL
+        )
     )
-    (print temp)
+    temp
 )
 
-;;(setq a-list '((Yolande 25) (Pierre 22) (Julie 45) (Pierre 33)))
-;;(my-assocBis 'Pierre a-list)
+(setq a-list '((Yolande 25) (Pierre 22) (Julie 45) (Pierre 33)))
+(print (my-assoc 'Pierre a-list))
+(print (my-assocBis 'Pierre a-list))
 
 
 ;;Exercice4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -182,9 +193,10 @@
 
 (defun FB2(ouvrage)
     (loop for n in ouvrage
-     do(if(eq 'Hugo (cadr n))
-        (print n)
-     )
+        do(if (eq 'Hugo (cadr n))
+            (print n)
+            NIL
+        )
     )
 )
 
@@ -192,43 +204,40 @@
 (defun FB3(auteur ouvrage)
     (setq l '())
     (loop for n in ouvrage
-      do(if(eq auteur (cadr n))
-          (setq l (append l (list n)))
-          )
+        do(if (eq auteur (cadr n))
+            (setq l (append l (list n)))
+            NIL
+        )
     )
-         l
-
+    l
 )
 
 (defun FB4(X ouvrage)
-   (setq temp '())
-   (loop for n in ouvrage
-    do(if(and(eq X (annee n))(equal nil temp))
-        (setq temp n)
-      )
-
+    (setq temp '())
+    (loop for n in ouvrage
+        do(if (and (eq X (annee n)) (equal nil temp))
+            (setq temp n)
+        )
     )
     temp
 )
 
 (defun FB5(ouvrage)
     (setq l '())
-        (loop for n in ouvrage
-            do(if(< 1000000 (cadddr n))
-                (setq l (append l (list n)))
-            )
+    (loop for n in ouvrage
+        do(if (< 1000000 (cadddr n))
+            (setq l (append l (list n)))
         )
+    )
     l
-
 )
 
 (defun FB6(X ouvrage)
     (setq sum 0)
     (loop for n in (FB3 X ouvrage)
-        do(setq sum (+ sum (nombre n) ) )
-
+        do(setq sum (+ sum (nombre n)) )
     )
-    (eval(/ sum (list-length (FB3 X ouvrage))))
+    (eval (/ sum (list-length (FB3 X ouvrage))))
 )
 
 
