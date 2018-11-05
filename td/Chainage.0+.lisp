@@ -12,11 +12,12 @@
 
 ;(funcall function-name params...)
 
-(defun cclRegle (regle) (car regle))
+; Conclusion
+(defun cclRegle (regle) (caddr regle))
 
 (defun premisseRegle (regle) (cadr regle))
 
-(defun numRegle (regle) (caddr regle))
+(defun numRegle (regle) (car regle))
 
 (defun RegleCanditat (but bdr)
     (let ((canditat NIL))
@@ -57,11 +58,23 @@
             (RegleCanditatRecu but (cdr bdr))
         )
     )
+
+    ; (if (null regles) NIL
+    ;   (let* ((concl (conclusion (car regles))))
+    ;       (attribut (cadr concl))
+    ;       (valeur (caddr concl)))
+    ;       (if (and (eq attribut (cadr but)))
+    ;           (funcall (car but) valeur (caddr but)))
+    ;           (cons (car regles) (regles-canditature but (cdr regles)))
+    ;           (regles-canditature but (cdr regles)))
+    ;       )
+    ;   )
+    ; )
 )
 
 (defun verifer_ou (but bdr bdf)
     (cond 
-        ((member but bdf)
+        ((appartient but bdf)
             T
         )
         (T
@@ -94,3 +107,8 @@
 (setq BF '((d 7) (t 12)))
 
 (print (appartient '(>= d 5) BF))
+(print (appartient '(>= t 22) BF))
+
+(print (RegleCanditat '(eq action taxi) baseRegle))
+
+(print (verifer_ou '(eq action taxi) baseRegle BF))
