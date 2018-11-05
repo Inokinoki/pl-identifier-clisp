@@ -47,16 +47,16 @@
             T
         )
         (T
-            (setq regles (RegleCanditat but bdr))
-            (setq ok NIL)
-            (mapcar (lambda (regle) 
-                    (if ok
-                        NIL
-                        (setq ok (verfier_et regle bdr bdf))
-                    )
-                ) regles
+            (let ((regles (RegleCanditat but bdr)) (ok NIL))
+                (mapcar (lambda (regle) 
+                        (if ok
+                            NIL
+                            (setq ok (verfier_et regle bdr bdf))
+                        )
+                    ) regles
+                )
+                ok
             )
-            ok
         )
     )
 )
