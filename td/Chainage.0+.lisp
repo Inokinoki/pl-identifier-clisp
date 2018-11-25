@@ -19,12 +19,22 @@
 
 (defun numRegle (regle) (car regle))
 
-(defun RegleCanditat (but bdr)
-    (let ((canditat NIL))
-        (dolist (x bdr canditat)
-            (if (equal but (cclRegle x))
-                (push x canditat)
-                NIL
+(defun conclusion (regle) (caddr regle))
+
+(defun RegleCanditat (but regles)
+    ;(let ((canditat NIL))
+    ;    (dolist (x bdr canditat)
+    ;        (if (equal but (cclRegle x))
+    ;            (push x canditat)
+    ;            NIL
+    ;        )
+    ;    )
+    ;)
+    (if (null regles) NIL 
+        (let* ((concl (conclusion (car regles))) (attribut (cadr concl)) (valeur (caddr concl)))
+            (if (and (eq attribut (cadr but)) (funcall (car but) valeur (caddr but)))
+                (cons (car regles) (reglecanditat but (cdr regles)))
+                (reglecanditat but (cdr regles))
             )
         )
     )
@@ -66,7 +76,6 @@
     ;       (if (and (eq attribut (cadr but)))
     ;           (funcall (car but) valeur (caddr but)))
     ;           (cons (car regles) (regles-canditature but (cdr regles)))
-    ;           (regles-canditature but (cdr regles)))
     ;       )
     ;   )
     ; )
@@ -111,4 +120,41 @@
 
 (print (RegleCanditat '(eq action taxi) baseRegle))
 
-(print (verifer_ou '(eq action taxi) baseRegle BF))
+; (print (verifer_ou '(eq action taxi) baseRegle BF))
+
+; Ecrire la function flatten(L) qui met a plat la liste L
+; EX: (flatten '(a (b c) (d (e f))))
+;       (a b c d e f)
+
+(defun flatten1 (L)
+    (cond ((null L) NIL)
+        ((atom (car L)) (cons (car L) (flatten1 (cdr L))))
+        (T (append (flatten1 (car L)) (flatten1 (cdr L))))
+    )
+)
+
+(defun flatten2 (L)
+    (cond ((null L) NIL)
+        ((atom L) (list L))
+        (T (append (flatten2 (car L)) (flatten2 (cdr L))))
+    )
+)
+
+(defun flatten (L)
+    (if (and (listp L) L)
+        (let ((li NIL))
+            (dolist (ele L li)
+                ;(print (flatten ele))
+                (if (listp ele)
+                    (cons li (flatten ele))
+                    (cons li ele)
+                )
+                (print li)
+            )
+            li
+        )
+    )
+)
+
+(print (flatten1 '(a (b c) (d (e f)))))
+(print (flatten2 '(a (b c) (d (e f)))))
