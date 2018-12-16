@@ -22,7 +22,7 @@
 			)
 		)
 	)
-)
+) 
 
 (make-individu 'N1 'ELEPHANT 'COLOR "grey" 'AGE 5)
 
