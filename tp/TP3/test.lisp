@@ -47,3 +47,17 @@
 )
 
 (print *scores*)
+
+(with-open-file (rules "rules.txt" :direction :output :if-does-not-exist :create :if-exists :overwrite)
+    (dolist (lang *scores*)
+        (let ((items (cdr lang)))
+             (dolist (item items)
+                 (let ((filted-items (pickup-500+-features item)))
+                     (dolist (filted-item filted-items)
+                         (write-string (format NIL "~A ~A ~A ~A~%" (car lang) (car item) (car filted-item) (cdr filted-item)) rules)
+                     )
+                 )
+             )
+        )
+    )
+)
