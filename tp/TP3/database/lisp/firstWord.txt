@@ -13159,7 +13159,6 @@ Search 2
 one))) 1
 *PRINT-ESCAPE* 1
 frame-number 3
-                     €º¾   &   J{ 1
 #:*vardir* 1
 :mu 3
 :EMIT-CFASL 1
