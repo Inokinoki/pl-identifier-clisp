@@ -7,7 +7,10 @@
 (defun apply-conclusion (conclusion)
     (if (equal (car conclusion) 'equal)
         (setf (slot-value (eval (cadadr conclusion)) (caadr conclusion)) (eval (caddr conclusion)))
-        (eval conclusion)
+        (progn 
+            (eval conclusion)
+            T ; Resultat trouve
+        )
     )
 )
 
@@ -25,7 +28,7 @@
 ;; Breadth first search, O(n)
 (defun parcour-regles (regles applied-regles depth)
     ;(format T "------------- Inference ~A ---------------- ~%" depth)
-    (let ((conclusion-a-apply '()))
+    (let ((conclusion-a-apply '()) (is-ok NIL))
         (dolist (regle regles)
             ;(format T "Validating Regle ~A" (nom regle))
             ;(format T " Result: ~A ~%" (valid-et (premisses regle)))
@@ -46,12 +49,16 @@
                 ; apply
                 (dolist (conclusions conclusion-a-apply)
                     (dolist (conclusion conclusions)
-                        (apply-conclusion conclusion)
+                        (if (apply-conclusion conclusion)
+                            (setf is-ok T)
+                        )
                     )
                 )
 
                 ;; Enter next
-                (parcour-regles regles applied-regles (+ depth 1))
+                (let ((next-ok (parcour-regles regles applied-regles (+ depth 1))))
+                    (or next-ok is-ok)  ; Return
+                )
             )
         )
     )

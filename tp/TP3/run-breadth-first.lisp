@@ -24,5 +24,8 @@
 
     (format T "----------- Marchant ----------- ~%")
 
-    (parcour-regles regles '() 1)
+    (if (parcour-regles regles '() 1)
+        (format T "Resultat trouve ~%")
+        (format T "Pas de resultat ~%")
+    )
 )
