@@ -31,4 +31,4 @@
     )
 )
 
-(print (sort (get-brackets "test.lisp") #'sort-dsec-helper))
+;(print (sort (get-brackets "test.lisp") #'sort-dsec-helper))

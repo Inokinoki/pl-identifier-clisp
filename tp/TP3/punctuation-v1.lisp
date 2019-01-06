@@ -36,4 +36,4 @@
     )
 )
 
-(print (sort (get-punctuation-rate "test.lisp") #'sort-dsec-helper))
+;(print (sort (get-punctuation-rate "test.lisp") #'sort-dsec-helper))
