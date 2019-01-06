@@ -1,10 +1,10 @@
 (load "parsing-module-symbol.lisp")
 
 (defun get-brackets (source)
-    (let ((brackets (list (cons (intern "(") 0) (cons (intern ")") 0) (cons (intern "[") 0) (cons (intern "]") 0)
+    (let ((brackets (list (cons (intern "(") 0) (cons (intern ")") 0) (cons (intern "[") 0) (cons (intern "]") 0) (cons (intern "<") 0) (cons (intern ">") 0)
 			(cons (intern "{") 0) (cons (intern "}") 0)
 		))
-		(bracketlist (list (intern "(") (intern ")") (intern "[") (intern "]") (intern "{") (intern "}")))
+		(bracketlist (list (intern "(") (intern ")") (intern "[") (intern "]") (intern "{") (intern "}") (intern "<") (intern ">")))
 		(f (open source :direction :input)))
         ; parse source
         (loop
