@@ -6,7 +6,10 @@
 
 (defun apply-conclusion (conclusion)
     (if (equal (car conclusion) 'equal)
-        (setf (slot-value (eval (cadadr conclusion)) (caadr conclusion)) (eval (caddr conclusion)))
+        (progn
+            (setf (slot-value (eval (cadadr conclusion)) (caadr conclusion)) (eval (caddr conclusion)))
+            NIL
+        )
         (progn 
             (eval conclusion)
             T ; Resultat trouve
@@ -61,5 +64,51 @@
                 )
             )
         )
+    )
+)
+
+(defun get-regles-possible (regles)
+    (let ((regles-valable '()))
+        (dolist (regle regles)
+            (if (valid-et (premisses regle))
+                (if (not (member regle *applied-regles*))
+                    (progn
+                        ;(format T "Regle ~A Result: ~A  ~A ~%" (nom regle) (valid-et (premisses regle)) (conclusions regle))
+                        (push regle regles-valable)
+                    )
+                )
+            )
+        )
+        regles-valable
+    )
+)
+
+(defparameter *applied-regles* '())
+;; Depth first search
+(defun depth-regles (regles)
+    (let ((regles-valable (get-regles-possible regles)) (is-ok NIL))
+        ; Get valable
+        ; Pick up one, valide it, enter next
+        (dolist (regle regles-valable)
+            (dolist (conclusion (conclusions regle))
+                (push regle *applied-regles*)
+                (if (apply-conclusion conclusion)
+                    (progn
+                        ;(format T "~A ~%" conclusion)
+                        (setf is-ok T)
+                    )
+                )
+
+                (let ((next-ok (depth-regles regles)))
+                    (if next-ok
+                        (progn 
+                            (setf is-ok next-ok)
+                            (return )
+                        )
+                    )  ; Return
+                )
+            )
+        )
+        is-ok
     )
 )

@@ -25,16 +25,15 @@
 
 (defclass $source-descriptor ()
     (
-        (lastCharacter :accessor ?lastCharacter :initarg :lastcharacter :initform (intern "t"))
-        (firstword :accessor ?firstword :initarg :firstword :initform (intern ")"))
-        (punctuation :accessor ?punctuation :initarg :punctuation :initform (intern ";"))
-        (brackets :accessor ?brackets :initarg :brackets :initform (intern ")"))
-        (operators :accessor ?operators :initarg :operators :initform (intern ";"))
-        (keywords :accessor ?keywords :initarg :keywords :initform (intern "assert"))
+        (lastCharacter :accessor ?lastCharacter :initarg :lastcharacter :initform (intern ""))
+        (firstword :accessor ?firstword :initarg :firstword :initform (intern ""))
+        (punctuation :accessor ?punctuation :initarg :punctuation :initform (intern ""))
+        (brackets :accessor ?brackets :initarg :brackets :initform (intern ""))
+        (operators :accessor ?operators :initarg :operators :initform (intern ""))
+        (keywords :accessor ?keywords :initarg :keywords :initform (intern ""))
     )
 )
 
-(defparameter source (make-instance '$source-descriptor :lastcharacter (intern "t")))
 (defparameter *result* (make-instance '$result))
 
 (defparameter languages '())
@@ -8198,56 +8197,50 @@
 )
 (R779 
     (
-        (>= (?python *result*) 4)
+        (>= (?python *result*) 3)
     ) 
     (
-        (print "Le code est probablement python
-")
+        (format T "Le code est probablement python~%")
     )
 )
 (R780 
     (
-        (>= (?lisp *result*) 4)
+        (>= (?lisp *result*) 3)
     ) 
     (
-        (print "Le code est probablement lisp
-")
+        (format T "Le code est probablement lisp~%")
     )
 )
 (R781 
     (
-        (>= (?javascript *result*) 4)
+        (>= (?javascript *result*) 3)
     ) 
     (
-        (print "Le code est probablement javascript
-")
+        (format T "Le code est probablement javascript~%")
     )
 )
 (R782 
     (
-        (>= (?java *result*) 4)
+        (>= (?java *result*) 3)
     ) 
     (
-        (print "Le code est probablement java
-")
+        (format T "Le code est probablement java~%")
     )
 )
 (R783 
     (
-        (>= (?cplusplus *result*) 4)
+        (>= (?cplusplus *result*) 3)
     ) 
     (
-        (print "Le code est probablement cplusplus
-")
+        (format T "Le code est probablement cplusplus~%")
     )
 )
 (R784 
     (
-        (>= (?c *result*) 4)
+        (>= (?c *result*) 3)
     ) 
     (
-        (print "Le code est probablement c
-")
+        (format T "Le code est probablement c~%")
     )
 )
 
