@@ -50,10 +50,3 @@
         highest-pairs
     )
 )
-
-(setq filename "test.lisp")
-
-(print (get-highest (get-first-word filename)))
-(print (get-highest (get-brackets filename)))
-(print (get-highest (get-last-character filename)))
-(print (get-highest (get-punctuation-rate filename)))

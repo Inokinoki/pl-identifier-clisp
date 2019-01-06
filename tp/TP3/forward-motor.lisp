@@ -56,7 +56,3 @@
         )
     )
 )
-
-;(print (valid-et (premisses (car regles))))
-(parcour-regles regles '() 1)
-
