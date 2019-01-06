@@ -1,7 +1,7 @@
 (load "preprocessing-v1.lisp")
 (load "forward-motor.lisp")
 
-(setq filename "identifytraits.py")
+(load "file.lisp")
 ;(setq filename "forward-motor.lisp")
 
 (let ( 
