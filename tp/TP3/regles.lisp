@@ -8197,7 +8197,7 @@
 )
 (R779 
     (
-        (>= (?python *result*) 3)
+        (>= (?python *result*) 4)
     ) 
     (
         (format T "Le code est probablement python~%")
@@ -8205,7 +8205,7 @@
 )
 (R780 
     (
-        (>= (?lisp *result*) 3)
+        (>= (?lisp *result*) 4)
     ) 
     (
         (format T "Le code est probablement lisp~%")
@@ -8213,7 +8213,7 @@
 )
 (R781 
     (
-        (>= (?javascript *result*) 3)
+        (>= (?javascript *result*) 4)
     ) 
     (
         (format T "Le code est probablement javascript~%")
@@ -8221,7 +8221,7 @@
 )
 (R782 
     (
-        (>= (?java *result*) 3)
+        (>= (?java *result*) 4)
     ) 
     (
         (format T "Le code est probablement java~%")
@@ -8229,7 +8229,7 @@
 )
 (R783 
     (
-        (>= (?cplusplus *result*) 3)
+        (>= (?cplusplus *result*) 4)
     ) 
     (
         (format T "Le code est probablement cplusplus~%")
@@ -8237,7 +8237,7 @@
 )
 (R784 
     (
-        (>= (?c *result*) 3)
+        (>= (?c *result*) 4)
     ) 
     (
         (format T "Le code est probablement c~%")
