@@ -50,4 +50,4 @@
     )
 )
 
-(print (sort (get-keywords "test.lisp") #'sort-dsec-helper))
+; (print (sort (get-keywords "test.lisp") #'sort-dsec-helper))

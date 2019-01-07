@@ -2,6 +2,8 @@
 (load "firstword-v1.lisp")
 (load "punctuation-v1.lisp")
 (load "brackets-v1.lisp")
+(load "keyword-v1.lisp")
+(load "operator-v1.lisp")
 
 (load "parsing-module-symbol.lisp")
 

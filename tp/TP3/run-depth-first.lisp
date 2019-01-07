@@ -8,12 +8,16 @@
         (bracket (get-highest (get-brackets filename)))
         (lastcharacter (get-highest (get-last-character filename)))
         (punctuation (get-highest (get-punctuation-rate filename)))
+        (keywords (get-highest (get-keywords filename)))
+        (operators (get-highest (get-operator filename)))
     )
 
     (format T "Le premier mot : ~{~A ~} ~%" firstword)
     (format T "Le crochet : ~{~A ~} ~%" bracket)
     (format T "Le dernier character: ~{~A ~} ~%" lastcharacter)
     (format T "La ponctuation: ~{~A ~} ~%" punctuation)
+    (format T "Le mot cle: ~{~A ~} ~%" keywords)
+    (format T "L'operateur: ~{~A ~} ~%" operators)
 
     (defparameter source (make-instance '$source-descriptor))
     
@@ -36,7 +40,19 @@
                             (setf (?punctuation source) (caar punctuation))
                             (if (depth-regles regles)
                                 (format T "Resultat trouve ~%")
-                                (format T "Pas de resultat ~%")
+                                (progn
+                                    (setf (?keywords source) (caar keywords))
+                                    (if (depth-regles regles)
+                                        (format T "Resultat trouve ~%")
+                                        (progn
+                                            (setf (?operators source) (caar operators))
+                                            (if (depth-regles regles)
+                                                (format T "Resultat trouve ~%")
+                                                (format T "Pas de resultat ~%")
+                                            )
+                                        )
+                                    )
+                                )
                             )
                         )
                     )
