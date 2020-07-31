@@ -1,12 +1,7 @@
-# Programming Language Identifier in Common Lisp
+# assignment-ia01
+Assignment for Artificial Intelligence
 
-Change the file name in `file.lisp`, then run
-
-```
-lisp run-breadth-first.lisp
-```
-
-```
-lisp run-depth-first.lisp
-```
-
+The project is composed by 3 parts:
+1. TD: Travaux dirigés LISP
+2. TP: Travaux pratiques  LISP
+3. Implementation with C
